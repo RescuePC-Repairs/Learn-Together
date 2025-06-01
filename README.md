@@ -30,43 +30,86 @@ A platform for collaborative learning where users can share tutorials, learn fro
    npm install
    ```
 
-3. Create a `.env` file in the project root with your Supabase credentials:
+3. **Set up environment variables**
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Or use the setup script
+   npm run setup
    ```
-   PUBLIC_SUPABASE_URL=your-supabase-url
-   PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+
+4. **Set up the database**
+   ```bash
+   # Run database migrations
+   npm run migrate:dev
    ```
 
-### Development
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-Start the development server:
+6. **Open your browser**
+   ```
+   http://localhost:3000
+   ```
 
-```bash
-npm run dev
+## Environment Variables
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Supabase
+PUBLIC_SUPABASE_URL=your_supabase_project_url
+PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_oauth_client_id
+GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
+GOOGLE_REDIRECT_URI=your_google_oauth_redirect_uri
+
+# Google Calendar API
+GOOGLE_API_KEY=your_google_api_key
 ```
 
-### Building for Production
+## Available Scripts
 
-To create a production build:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run check` - Run type checking
+- `npm run lint` - Run linter
+- `npm run format` - Format code
+- `npm run migrate` - Run database migrations
+- `npm run setup` - Interactive setup for environment variables
 
-```bash
-npm run build
+## Project Structure
 
-# Preview the production build
-npm run preview
+```
+├── src/
+│   ├── lib/
+│   │   ├── components/     # Reusable components
+│   │   ├── stores/         # Svelte stores
+│   │   └── utils/          # Utility functions
+│   ├── routes/             # Application routes
+│   └── app.html            # Main HTML template
+├── static/                 # Static assets
+├── supabase/
+│   └── migrations/       # Database migrations
+├── .env.example           # Example environment variables
+├── package.json
+└── README.md
 ```
 
 ## Deployment
 
-This project is configured for deployment to GitHub Pages. To deploy:
+### Vercel
 
-1. Update the `homepage` field in `package.json` with your GitHub username:
-   ```json
-   "homepage": "https://rescuepc-repairs.github.io/Learn-Together"
-   ```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Flearntogether&env=SUPABASE_URL,SUPABASE_ANON_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,GOOGLE_REDIRECT_URI,GOOGLE_API_KEY&project-name=learntogether&repository-name=learntogether)
 
+### Manual Deployment
 2. Install gh-pages if not already installed:
    ```bash
    npm install --save-dev gh-pages

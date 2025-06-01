@@ -20,7 +20,20 @@
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="flex-shrink-0 flex items-center">
-          <a href="/" class="text-xl font-bold text-indigo-600">LearnTogether</a>
+          <a href="/" class="flex items-center space-x-2">
+            <img 
+              src="/images/learn-together-logo.png" 
+              alt="Learn Together Logo" 
+              class="h-10 w-auto"
+              on:error="{(e: Event) => {
+                const img = e.target as HTMLImageElement;
+                img.onerror = null;
+                img.src = '/images/learn-together-logo.png';
+                img.alt = 'Learn Together Logo';
+              }}"
+            />
+            <span class="text-xl font-bold text-indigo-600 hidden md:inline-block">LearnTogether</span>
+          </a>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
           {#each navItems as item}
