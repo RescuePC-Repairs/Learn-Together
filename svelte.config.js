@@ -79,11 +79,19 @@ const config = {
       base: process.argv.includes('dev') ? '' : '/Learn-Together',
     },
     appDir: 'internal', // This helps prevent routing issues with GitHub Pages
-    // Ensure static assets are properly served
-    target: '#svelte',
-    ssr: true,
     // Add trailing slash for GitHub Pages
-    trailingSlash: 'always'
+    trailingSlash: 'always',
+    // Prerender all pages by default
+    prerender: {
+      default: true
+    },
+    // Handle SPA fallback
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build',
+      fallback: 'index.html',
+      precompress: false
+    })
   },
   
   // Enable source maps for better debugging

@@ -2,13 +2,13 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   // Load environment variables
   const env = loadEnv(mode, process.cwd(), '');
   
-  const config: UserConfig = {
+  return {
     plugins: [sveltekit()],
-    base: process.env.NODE_ENV === 'production' ? '/Learn-Together/' : '/',
+    base: env.NODE_ENV === 'production' ? '/Learn-Together/' : '/',
     server: {
       port: 3000,
       strictPort: true,
@@ -18,8 +18,10 @@ export default defineConfig(({ command, mode }) => {
       port: 3000,
       strictPort: true,
       host: true
+    },
+    build: {
+      outDir: 'build',
+      emptyOutDir: true
     }
-  };
-  
-  return config;
+  } as UserConfig;
 });
