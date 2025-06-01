@@ -5,13 +5,15 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"preview:build": "vite preview --host",
+		"build": "vite build --outDir build",
+		"preview": "vite preview --port 3000",
+		"preview:build": "vite preview --port 3000 --host",
 		"deploy": "npm run build && gh-pages -d build",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"homepage": "https://rescuepc-repairs.github.io/Learn-Together",
 	"devDependencies": {
