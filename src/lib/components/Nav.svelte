@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { auth } from '$lib/stores/auth';
+  import DonateButton from './DonateButton.svelte';
   
   const navItems = [
     { name: 'Home', href: '/' },
@@ -32,7 +33,8 @@
           {/each}
         </div>
       </div>
-      <div class="hidden sm:ml-6 sm:flex sm:items-center">
+      <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
+        <DonateButton />
         {#if $auth.user}
           <div class="ml-3 relative">
             <div>
