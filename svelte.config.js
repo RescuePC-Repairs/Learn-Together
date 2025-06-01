@@ -76,9 +76,14 @@ const config = {
     
     // For GitHub Pages
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '/Learn-Together' : '',
+      base: process.argv.includes('dev') ? '' : '/Learn-Together',
     },
-    appDir: 'internal' // This helps prevent routing issues with GitHub Pages
+    appDir: 'internal', // This helps prevent routing issues with GitHub Pages
+    // Ensure static assets are properly served
+    target: '#svelte',
+    ssr: true,
+    // Add trailing slash for GitHub Pages
+    trailingSlash: 'always'
   },
   
   // Enable source maps for better debugging
